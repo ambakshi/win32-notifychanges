@@ -30,9 +30,9 @@ int Win32_Notifychanges() {
    SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_FLUSH , 0, 0);
    SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_IDLIST , 0, 0);
    SHChangeNotify(SHCNE_UPDATEDIR, SHCNF_IDLIST, 0, 0);
-   r = SendMessageTimeout(HWND_BROADCAST, WM_SETTINGCHANGE, 0, (LPARAM)lParam, SMTO_BLOCK, timeout , NULL);
+   r = SendMessageTimeout(HWND_BROADCAST, WM_SETTINGCHANGE, 0, (LPARAM)lParam, SMTO_BLOCK, timeout * 1000 , NULL);
    if (r != 0) {
-        r = SendMessageTimeout(HWND_BROADCAST, WM_SETTINGCHANGE, 0, 0, SMTO_BLOCK, timeout , NULL) != 0;
+        r = SendMessageTimeout(HWND_BROADCAST, WM_SETTINGCHANGE, 0, 0, SMTO_BLOCK, timeout * 1000 , NULL) != 0;
    }
    return r;
 }

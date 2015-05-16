@@ -1,13 +1,13 @@
 .PHONY: all
 
 all: notifychanges.exe
-notifychanges.exe: notifychanges.obj winmain.obj
+notifychanges.exe: notifychanges.c winmain.c
 
 %.obj: %.c
 	cl.exe /nologo /c $<
 
 %.exe:
-	link.exe /nologo /out:$@ $^
+	cl.exe /nologo /Os /favor:AMD64 $^ /link /out:$@
 
 clean:
 	rm -f *.obj *.exe
