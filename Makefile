@@ -1,13 +1,17 @@
 .PHONY: all
 
+CC=./cl
+LD=./cl
+CFLAGS=/nologo /c
+LDFLAGS=/nologo /Os /favor:AMD64 
 all: notifychanges.exe
 notifychanges.exe: notifychanges.c winmain.c
 
 %.obj: %.c
-	cl.exe /nologo /c $<
+	$(CC) $(CFLAGS) $<
 
 %.exe:
-	cl.exe /nologo /Os /favor:AMD64 $^ /link /out:$@
+	$(LD) $(LDFLAGS) $^ /link /out:$@
 
 clean:
 	rm -f *.obj *.exe
